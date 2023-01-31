@@ -1,0 +1,53 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <form [formGroup]="myForm" (ngSubmit)= "onSubmit()" class="col-md-12 border border-dark mt-4 p-4">
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="firstName">FirstName</label>
+              <input type="text" class="form-control" id="firstName" placeholder="FirstName" formControlName="firstName">
+              <small *ngIf ="!myForm.get('firstName').valid && myForm.get('firstName').touched" class="form-text text-danger">
+                  <span *ngIf= "myForm.get('firstName')?.errors?.['required']" >FirstName is required!</span>
+              </small>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="lastName">LastName</label>
+              <input type="text" class="form-control" id="lastName" placeholder="LastName" formControlName="lastName">
+              <small *ngIf ="!myForm.get('lastName').valid && myForm.get('lastName').touched" class="form-text text-danger">
+                  <span *ngIf= "myForm.get('lastName')?.errors?.['required']" >LastName is required!</span>
+              </small>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="contactMtdRb" class="col-form-label col-md-12 pt-0">How should we contact you?</label>
+                <div class="col-md-12">
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="contactMtdRb" id="inlineRadio1" value="Phone" formControlName="contactMtdRb">
+                    <label class="form-check-label text-secondary" for="inlineRadio1">Phone</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="contactMtdRb" id="inlineRadio2" value="Email" formControlName="contactMtdRb">
+                    <label class="form-check-label text-secondary" for="inlineRadio2">Email</label>
+                  </div>
+                </div>
+            </div>
+            <div *ngIf="myForm.get('contactMtdRb').valid && myForm.get('contactMtdRb').value=='Phone'" class="form-group col-md-6">
+              <label for="phoneNo">Phone/Mobile no.</label>
+              <input type="text" class="form-control" id="phoneNo" placeholder="Phone/Mobile no." formControlName="phoneNo2">
+              <small *ngIf ="!myForm.get('phoneNo2').valid && myForm.get('phoneNo2').touched" class="form-text text-danger">
+                  <span *ngIf= "myForm.get('phoneNo2')?.errors?.['required']">Phone/Mobile no. is required!</span>
+              </small>
+            </div>
+            <div *ngIf="myForm.get('contactMtdRb').valid && myForm.get('contactMtdRb').value=='Email'" class="form-group col-md-6">
+              <label for="email">Email-Id</label>
+              <input type="text" class="form-control" id="email2" placeholder="Email-Id" formControlName="email2">
+              <small *ngIf ="!myForm.get('email2').valid && myForm.get('email2').touched" class="form-text text-danger">
+                  <span *ngIf= "myForm.get('email2')?.errors?.['required']">Email-Id is required!</span>
+              </small>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

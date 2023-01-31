@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <form [formGroup]="myForm" (ngSubmit)= "onSubmit()" class="col-md-12 border border-dark mt-4 p-4">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="firstName">FirstName</label>
+            <input type="text" class="form-control" id="firstName" placeholder="FirstName" formControlName="firstName">
+            <small *ngIf ="!myForm.get('firstName').valid && myForm.get('firstName').touched" class="form-text text-danger">
+                <span *ngIf= "myForm.get('firstName')?.errors?.['required']" >FirstName is required!</span>
+            </small>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="lastName">LastName</label>
+            <input type="text" class="form-control" id="lastName" placeholder="LastName" formControlName="lastName">
+            <small *ngIf ="!myForm.get('lastName').valid && myForm.get('lastName').touched" class="form-text text-danger">
+                <span *ngIf= "myForm.get('lastName')?.errors?.['required']" >LastName is required!</span>
+            </small>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="contactMtdDd">How should we contact you?</label>
+            <select class="form-control" id="contactMtdDd" formControlName="contactMtdDd">
+              <option selected disabled>Choose...</option>
+              <option>Phone</option>
+              <option>Email</option>
+            </select>
+          </div>
+          <div *ngIf="myForm.get('contactMtdDd').valid && myForm.get('contactMtdDd').value=='Phone'" class="form-group col-md-6">
+            <label for="phoneNo">Phone/Mobile no.</label>
+            <input type="text" class="form-control" id="phoneNo" placeholder="Phone/Mobile no." formControlName="phoneNo">
+            <small *ngIf ="!myForm.get('phoneNo').valid && myForm.get('phoneNo').touched" class="form-text text-danger">
+                <span *ngIf= "myForm.get('phoneNo')?.errors?.['required']">Phone/Mobile no. is required!</span>
+            </small>
+          </div>
+          <div *ngIf="myForm.get('contactMtdDd').valid && myForm.get('contactMtdDd').value=='Email'" class="form-group col-md-6">
+            <label for="email">Email-Id</label>
+            <input type="text" class="form-control" id="email" placeholder="Email-Id" formControlName="email">
+            <small *ngIf ="!myForm.get('email').valid && myForm.get('email').touched" class="form-text text-danger">
+                <span *ngIf= "myForm.get('email')?.errors?.['required']">Email-Id is required!</span>
+            </small>
+          </div>
+        </div>
+        <!-- <div class="col-md-12 text-center">
+          <button type="submit" class="form-group btn btn-primary mt-4">Submit</button>
+          <small *ngIf ="!myForm.valid && myForm.touched" class="disabled form-text text-danger">
+          <span *ngIf= "myForm?.errors?.['required']">Please fill required data</span>
+          </small>
+        </div> -->
+      </form>
+    </div>
+  </div>
+</div>
